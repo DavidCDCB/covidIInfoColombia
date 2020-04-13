@@ -26,17 +26,14 @@ import dom from './dom-pruebas.js';//clase estatica
 				localStorage.setItem("muertes", result.deaths);
 				localStorage.setItem("test", result.tests);
 			}
-
 			setData("casos",result.active);
 			setData("recuperados",result.recovered);
 			setData("criticos",result.critical);
 			setData("muertes",result.deaths);
 			setData("test",result.tests);
-
 		});
 
 		dom.getElemento("btn").addEventListener('click', event => {
-
 			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
         });
 	});
@@ -45,7 +42,7 @@ import dom from './dom-pruebas.js';//clase estatica
 		let diferencia=0;
 		if(localStorage.getItem(localDat)!=extDat){
 			diferencia=(parseInt(extDat)-localStorage.getItem(localDat));
-			dom.getElemento(localDat).innerText=localStorage.getItem(localDat)+"("+diferencia+" Nuevos)";
+			dom.getElemento(localDat).innerText=localStorage.getItem(localDat)+"+"+diferencia+" Nuevos";
 			localStorage.setItem(localDat, extDat);
 		}else{
 			dom.getElemento(localDat).innerText=extDat;
