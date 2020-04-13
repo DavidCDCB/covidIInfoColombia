@@ -1,8 +1,11 @@
 body{
+	overflow-x: hidden !important;
 	background-image:url("../images/fondo4.png");
-	overflow-x: hidden;
 }
 
+#principal{
+	overflow-x: hidden !important;
+}
 
 label,p{
 	font-weight: bold !important;
@@ -20,12 +23,5 @@ button{
 	font-size: 0.9em !important;
 }
 div{
-
 	margin-bottom: 10px;
-}
-
-
-#totales{
-
-
 }
