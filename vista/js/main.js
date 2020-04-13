@@ -18,16 +18,38 @@ import dom from './dom-pruebas.js';//clase estatica
 	doc.addEventListener('DOMContentLoaded',event => {
 		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
-			fetch('https://cors-anywhere.herokuapp.com/' + 'http://unremoved-sediments.000webhostapp.com/BD.json').then(blob => blob.json()).then(ext => {
-				if(ext.nombre==result.cases){
-					dom.getElemento("totales").innerText=result.cases;
-					dom.getElemento("recuperados").innerText=result.recovered;
-					dom.getElemento("muertes").innerText=result.deaths;
-				}else{
+			let diferencia=0;
+			if(localStorage.getItem("casos")==null){
+				localStorage.setItem("casos", result.cases);
+				localStorage.setItem("recuperados", result.recovered);
+				localStorage.setItem("muertes", result.deaths);
+			}
 
-					almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+result.cases+"&almacenarDatos=si");
-				}
-			});
+			if(localStorage.getItem("casos")!=result.cases){
+				diferencia=(parseInt(result.cases)-localStorage.getItem("casos"));
+				dom.getElemento("totales").innerText=localStorage.getItem("casos")+"("+diferencia+" Nuevos)";
+				localStorage.setItem("casos", result.cases);
+			}else{
+				dom.getElemento("totales").innerText=result.cases;
+			}
+
+			if(localStorage.getItem("recuperados")!=result.recovered){
+				diferencia=(parseInt(result.recovered)-localStorage.getItem("recuperados"));
+				dom.getElemento("recuperados").innerText=localStorage.getItem("recuperados")+"("+diferencia+" Nuevos)";
+				localStorage.setItem("recuperados", result.recovered);
+			}else{
+				dom.getElemento("recuperados").innerText=result.recovered;
+			}
+
+			if(localStorage.getItem("muertes")!=result.deaths){
+				diferencia=(parseInt(result.deaths)-localStorage.getItem("muertes"));
+				dom.getElemento("muertes").innerText=localStorage.getItem("muertes")+"("+diferencia+" Nuevos)";
+				localStorage.setItem("muertes", result.deaths);
+			}else{
+				dom.getElemento("muertes").innerText=result.deaths;
+			}
+
+
 		});
 	});
 
@@ -66,4 +88,15 @@ import dom from './dom-pruebas.js';//clase estatica
 
 
 
-
+/* fetch('https://cors-anywhere.herokuapp.com/' + 'https://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx').then(blob => blob.text()).then(ext => {
+	console.log(ext);
+});
+ 
+async function funcionAsincrona(){
+	let objHtml;
+	const response = await fetch('https://cors-anywhere.herokuapp.com/' + 'https://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx');
+	const blob = await response.blob();
+	console.log(blob);
+	objHtml=URL.createObjectURL(blob)
+  }
+funcionAsincrona(); */
