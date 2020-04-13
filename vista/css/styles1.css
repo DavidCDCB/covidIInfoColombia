@@ -1,5 +1,6 @@
 body{
 	background-image:url("../images/fondo3.png");
+	overflow-x: hidden;
 }
 
 ::-webkit-scrollbar{
