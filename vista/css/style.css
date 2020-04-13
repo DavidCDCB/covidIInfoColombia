@@ -1,0 +1,15 @@
+body{
+	background-image:url("../images/fondo4.png");
+}
+
+
+label,p{
+	font-weight: bold !important;
+	color: white !important;
+	margin-top: 10px;
+}
+
+#totales{
+
+
+}
