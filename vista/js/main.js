@@ -18,40 +18,39 @@ import dom from './dom-pruebas.js';//clase estatica
 	doc.addEventListener('DOMContentLoaded',event => {
 		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
-			let diferencia=0;
+			
 			if(localStorage.getItem("casos")==null){
-				localStorage.setItem("casos", result.cases);
+				localStorage.setItem("casos", result.active);
 				localStorage.setItem("recuperados", result.recovered);
+				localStorage.setItem("criticos", result.critical);
 				localStorage.setItem("muertes", result.deaths);
+				localStorage.setItem("test", result.tests);
 			}
 
-			if(localStorage.getItem("casos")!=result.cases){
-				diferencia=(parseInt(result.cases)-localStorage.getItem("casos"));
-				dom.getElemento("totales").innerText=localStorage.getItem("casos")+"("+diferencia+" Nuevos)";
-				localStorage.setItem("casos", result.cases);
-			}else{
-				dom.getElemento("totales").innerText=result.cases;
-			}
-
-			if(localStorage.getItem("recuperados")!=result.recovered){
-				diferencia=(parseInt(result.recovered)-localStorage.getItem("recuperados"));
-				dom.getElemento("recuperados").innerText=localStorage.getItem("recuperados")+"("+diferencia+" Nuevos)";
-				localStorage.setItem("recuperados", result.recovered);
-			}else{
-				dom.getElemento("recuperados").innerText=result.recovered;
-			}
-
-			if(localStorage.getItem("muertes")!=result.deaths){
-				diferencia=(parseInt(result.deaths)-localStorage.getItem("muertes"));
-				dom.getElemento("muertes").innerText=localStorage.getItem("muertes")+"("+diferencia+" Nuevos)";
-				localStorage.setItem("muertes", result.deaths);
-			}else{
-				dom.getElemento("muertes").innerText=result.deaths;
-			}
-
+			setData("casos",result.active);
+			setData("recuperados",result.recovered);
+			setData("criticos",result.critical);
+			setData("muertes",result.deaths);
+			setData("test",result.tests);
 
 		});
+
+		dom.getElemento("btn").addEventListener('click', event => {
+
+			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
+        });
 	});
+
+	let setData=(localDat,extDat)=>{
+		let diferencia=0;
+		if(localStorage.getItem(localDat)!=extDat){
+			diferencia=(parseInt(extDat)-localStorage.getItem(localDat));
+			dom.getElemento(localDat).innerText=localStorage.getItem(localDat)+"("+diferencia+" Nuevos)";
+			localStorage.setItem(localDat, extDat);
+		}else{
+			dom.getElemento(localDat).innerText=extDat;
+		}
+	}
 
 	const peticion = async (url) => {
 		const response = await fetch(url).then((response)=>{

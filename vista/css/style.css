@@ -1,5 +1,6 @@
 body{
 	background-image:url("../images/fondo4.png");
+	overflow-x: hidden;
 }
 
 
@@ -13,10 +14,15 @@ label,p{
 	text-shadow: 4px 4px 2px rgba(0, 0, 0, 1);
 }
 
+button{
+	font-weight: bold !important;
+	font-size: 1em !important;
+}
 div{
 
 	margin-bottom: 10px;
 }
+
 
 #totales{
 
