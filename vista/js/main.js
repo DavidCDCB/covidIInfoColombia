@@ -1,17 +1,7 @@
 'use strict';
-//cd /opt/lampp/htdocs/automatas;clear;sudo su;
-//chmod 777 -R /opt/lampp/htdocs/
-//git add .;git commit -m "actual";
-//git fetch;git difftool --tool=diffuse master origin/master
-//git merge --verify
-//git pull --rebase;
-//git add .;git rebase --continue
-//git push -f origin --all
 
 import { Grafo } from "./Grafo.js";
 import dom from './dom-pruebas.js';//clase estatica
-
-
 
 ((doc, win) => {
 	
@@ -79,10 +69,6 @@ import dom from './dom-pruebas.js';//clase estatica
 		console.log(casosT);
 	}
 })(document, window);
-
-
-
-
 
 /* fetch('https://cors-anywhere.herokuapp.com/' + 'https://www.ins.gov.co/Noticias/Paginas/Coronavirus.aspx').then(blob => blob.text()).then(ext => {
 	console.log(ext);
