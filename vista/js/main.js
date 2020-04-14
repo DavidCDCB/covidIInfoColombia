@@ -25,7 +25,9 @@ import dom from './dom-pruebas.js';//clase estatica
 
 		dom.getElemento("btn").addEventListener('click', event => {
 			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
-        });
+		});
+		
+		alterna_modo_de_pantalla();
 	});
 
 	let setData=(localDat,extDat)=>{
@@ -36,6 +38,27 @@ import dom from './dom-pruebas.js';//clase estatica
 			localStorage.setItem(localDat, extDat);
 		}else{
 			dom.getElemento(localDat).innerText=extDat;
+		}
+	}
+
+	let alterna_modo_de_pantalla=()=> {
+		if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // metodo alternativo
+			(!document.mozFullScreen && !document.webkitIsFullScreen)) {               // metodos actuales
+			if (document.documentElement.requestFullScreen) {
+				document.documentElement.requestFullScreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+				document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullScreen) {
+				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			}
+		} else {
+			if (document.cancelFullScreen) {
+				document.cancelFullScreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitCancelFullScreen) {
+				document.webkitCancelFullScreen();
+			}
 		}
 	}
 
