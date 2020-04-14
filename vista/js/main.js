@@ -7,14 +7,7 @@ import dom from './dom-pruebas.js';//clase estatica
 	doc.addEventListener('DOMContentLoaded',event => {
 		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
-			
-			if(localStorage.getItem("casos")==null){
-				localStorage.setItem("casos", result.active);
-				localStorage.setItem("recuperados", result.recovered);
-				localStorage.setItem("criticos", result.critical);
-				localStorage.setItem("muertes", result.deaths);
-				localStorage.setItem("test", result.tests);
-			}
+			persistencia(result);
 			setData("casos",result.active);
 			setData("recuperados",result.recovered);
 			setData("criticos",result.critical);
@@ -29,6 +22,17 @@ import dom from './dom-pruebas.js';//clase estatica
 		cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
 		alternarPantalla();
 	});
+
+	let persistencia=(result)=>{
+		if(localStorage.getItem("casos")==null){
+			localStorage.setItem("casos", result.active);
+			localStorage.setItem("recuperados", result.recovered);
+			localStorage.setItem("criticos", result.critical);
+			localStorage.setItem("muertes", result.deaths);
+			localStorage.setItem("test", result.tests);
+			$('#modal').modal('show');
+		}
+	}
 
 	let setData=(localDat,extDat)=>{
 		let diferencia=0;
