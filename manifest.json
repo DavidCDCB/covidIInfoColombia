@@ -1,0 +1,21 @@
+{
+	"name": "Covid Info Colombia",
+	"short_name": "CovidInfo",
+	"lang": "es-419",
+	"start_url": "./?utm_source=web_app_manifest",
+	"display": "fullscreen",
+	"icons": [
+	  {
+		"src": "vista/images/icon.png",
+		"sizes": "820x902",
+		"type": "png"
+	  },
+	  {
+		"src": "vista/images/icon144.png",
+		"sizes": "146x144",
+		"type": "png"
+	  }
+	]
+  }
+
+
