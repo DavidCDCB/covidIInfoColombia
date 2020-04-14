@@ -16,7 +16,7 @@ import dom from './dom-pruebas.js';//clase estatica
 		});
 
 		dom.getElemento("btn").addEventListener('click', event => {
-			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
+			win.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
 		});
 		
 		cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
@@ -90,8 +90,11 @@ import dom from './dom-pruebas.js';//clase estatica
 		let count=0;
 		var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 		const response = await fetch(proxyUrl + url).then(blob => blob.json()).then(data => {
+			let time = new Date();
 			count=parseInt(data.nombre)+1;
-			almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+"&almacenarDatos=si");
+			almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+
+			"&hora="+time.getHours()+":"+time.getMinutes()+"&fecha="+time.getDate()+"-"+time.getMonth()
+			+"&almacenarDatos=si");
 			console.log(count);
 			return data;
 		})
