@@ -26,6 +26,7 @@ import dom from './dom-pruebas.js';//clase estatica
 			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
 		});
 		
+		cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
 		alternarPantalla();
 	});
 
@@ -76,21 +77,24 @@ import dom from './dom-pruebas.js';//clase estatica
 			console.log(data);
 			return data;
 		}).catch(e => {
+			console.log(e);
+			return e;
 		});
 	}
 
 	const cargar = async (url) => {
+		let count=0;
 		var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
 		const response = await fetch(proxyUrl + url).then(blob => blob.json()).then(data => {
-			//console.table(data);
-			casosT=data.nombre;
+			count=parseInt(data.nombre)+1;
+			almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+"&almacenarDatos=si");
+			console.log(count);
 			return data;
 		})
 		.catch(e => {
 			console.log(e);
 			return e;
 		});
-		console.log(casosT);
 	}
 })(document, window);
 
