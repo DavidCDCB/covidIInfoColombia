@@ -1,6 +1,5 @@
 'use strict';
 
-import { Grafo } from "./Grafo.js";
 import dom from './dom-pruebas.js';//clase estatica
 
 ((doc, win) => {
@@ -27,7 +26,7 @@ import dom from './dom-pruebas.js';//clase estatica
 			window.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
 		});
 		
-		alterna_modo_de_pantalla();
+		alternarPantalla();
 	});
 
 	let setData=(localDat,extDat)=>{
@@ -36,12 +35,14 @@ import dom from './dom-pruebas.js';//clase estatica
 			diferencia=(parseInt(extDat)-localStorage.getItem(localDat));
 			dom.getElemento(localDat).innerText=localStorage.getItem(localDat)+"+"+diferencia+" Nuevos";
 			localStorage.setItem(localDat, extDat);
+			dom.getElemento(localDat).classList.add("shake");
+			dom.getElemento(localDat).classList.add("slow");
 		}else{
 			dom.getElemento(localDat).innerText=extDat;
 		}
 	}
 
-	let alterna_modo_de_pantalla=()=> {
+	let alternarPantalla=()=> {
 		if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // metodo alternativo
 			(!document.mozFullScreen && !document.webkitIsFullScreen)) {               // metodos actuales
 			if (document.documentElement.requestFullScreen) {
