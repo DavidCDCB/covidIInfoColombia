@@ -2,13 +2,16 @@
 
 import dom from './dom-pruebas.js';//clase estatica
 
+let test=false;
+
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
 		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
 			persistencia(result);
-			setData("casos",result.active);
+			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
+			setData("casos",result.cases);
 			setData("recuperados",result.recovered);
 			setData("criticos",result.critical);
 			setData("muertes",result.deaths);
@@ -25,7 +28,7 @@ import dom from './dom-pruebas.js';//clase estatica
 
 	let persistencia=(result)=>{
 		if(localStorage.getItem("casos")==null){
-			localStorage.setItem("casos", result.active);
+			localStorage.setItem("casos", result.cases);
 			localStorage.setItem("recuperados", result.recovered);
 			localStorage.setItem("criticos", result.critical);
 			localStorage.setItem("muertes", result.deaths);
@@ -92,9 +95,11 @@ import dom from './dom-pruebas.js';//clase estatica
 		const response = await fetch(proxyUrl + url).then(blob => blob.json()).then(data => {
 			let time = new Date();
 			count=parseInt(data.nombre)+1;
-			almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+
-			"&hora="+time.getHours()+":"+time.getMinutes()+"&fecha="+time.getDate()+"-"+time.getMonth()
-			+"&almacenarDatos=si");
+			if(test==false){
+				almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+
+				"&hora="+time.getHours()+":"+time.getMinutes()+"&fecha="+time.getDate()+"-"+time.getMonth()
+				+"&almacenarDatos=si");
+			}
 			console.log(count);
 			return data;
 		})
