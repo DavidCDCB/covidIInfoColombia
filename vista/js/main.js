@@ -20,7 +20,7 @@ let test=false;
 		});
 
 		dom.getElemento("btn").addEventListener('click', event => {
-			win.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
+			win.location.href = "https://www.datos.gov.co/Salud-y-Protecci-n-Social/Estado-de-Casos-de-Coronavirus-COVID-19-en-Colombi/6c4c-msrp" 
 		});
 		
 		alternarPantalla();
