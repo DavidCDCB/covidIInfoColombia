@@ -2,13 +2,11 @@
 
 import dom from './dom-pruebas.js';//clase estatica
 
-let test=true;
+let test=false;
 
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
-		showInfo()
-		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
 			persistencia(result);
 			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
