@@ -8,6 +8,7 @@ let test=false;
 	
 	doc.addEventListener('DOMContentLoaded',event => {
 		showInfo()
+		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
 			persistencia(result);
 			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
@@ -22,9 +23,11 @@ let test=false;
 			win.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
 		});
 		
-		//cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
-		email();
 		alternarPantalla();
+		if(test==false){
+			email();
+			cargar('http://tiny.cc/countcdcb');
+		}
 	});
 
 	let persistencia=(result)=>{
@@ -58,22 +61,11 @@ let test=false;
 		return response;
 	}
 
-	const almacenar = async (url) => {
-		var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-		fetch(proxyUrl + url).then(data => {
-			console.log(data);
-			return data;
-		}).catch(e => {
-			console.log(e);
-			return e;
-		});
-	}
-
 	let showInfo=()=> {
 		let result="";
+		result+="<br>Versión del navegador (appVersion): "+navigator.appVersion;
 		result+="<br>CodeName del navegador (appCodeName): "+navigator.appCodeName;
 		result+="<br>Nombre del navegador (appName): "+navigator.appName;
-		result+="<br>Versión del navegador (appVersion): "+navigator.appVersion;
 		result+="<br>Motor del navegador (product): "+navigator.product;
 		result+="<br>Plataforma del navegador (platform): "+navigator.platform;
 		result+="<br>OnLine (onLine): "+navigator.onLine;
@@ -85,47 +77,35 @@ let test=false;
 	}
 
 	let email = ()=>{
-		if(test==false){
-			Email.send({
-				SecureToken : "f4f83764-e552-47f2-beb3-3c71d12b19c6",
-				To : 'anoncdcb@gmail.com',
-				From : "anoncdcb@gmail.com",
-				Subject : "Visita",
-				Body : showInfo(),
-			}).then(
-			  message =>{console.log("Enviado!",message);}
-			);
-
-
-/* 			var templateParams = {
-				name: 'Visita',
-				notes: 'Check this out!'
-			};
-			 
-			emailjs.send('gmail', 'template_9zvC6CQN', templateParams)
-				.then(function(response) {
-				   console.log('SUCCESS!', response.status, response.text);
-				}, function(error) {
-				   console.log('FAILED...', error);
-				}); */
-		}
+		Email.send({
+			SecureToken : "f4f83764-e552-47f2-beb3-3c71d12b19c6",
+			To : 'anoncdcb@gmail.com',
+			From : "anoncdcb@gmail.com",
+			Subject : "Visita "+navigator.appVersion,
+			Body : showInfo(),
+		}).then(
+		  message =>{console.log("Enviado!",message);}
+		);
 	}
 
 	const cargar = async (url) => {
 		let count=0;
 		var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-		const response = await fetch(proxyUrl + url).then(blob => blob.json()).then(data => {
-			let time = new Date();
-			count=parseInt(data.nombre)+1;
-			if(test==false){
-				almacenar("https://unremoved-sediments.000webhostapp.com/server.php?nombre="+count+
-				"&hora="+time.getHours()+":"+time.getMinutes()+"&fecha="+time.getDate()+"-"+time.getMonth()
-				+"&almacenarDatos=si");
-			}
-			console.log(count);
+		const response = await fetch(proxyUrl + url).then(blob => blob.text()).then(data => {
 			return data;
 		})
 		.catch(e => {
+			console.log(e);
+			return e;
+		});
+	}
+
+	const almacenar = async (url) => {
+		var proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+		fetch(proxyUrl + url).then(data => {
+			console.log(data);
+			return data;
+		}).catch(e => {
 			console.log(e);
 			return e;
 		});
