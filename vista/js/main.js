@@ -7,6 +7,7 @@ let test=false;
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
+		showInfo()
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
 			persistencia(result);
 			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
@@ -68,6 +69,20 @@ let test=false;
 		});
 	}
 
+	let showInfo=()=> {
+		let result="";
+		result+="<br>CodeName del navegador (appCodeName): "+navigator.appCodeName;
+		result+="<br>Nombre del navegador (appName): "+navigator.appName;
+		result+="<br>Versión del navegador (appVersion): "+navigator.appVersion;
+		result+="<br>Motor del navegador (product): "+navigator.product;
+		result+="<br>Plataforma del navegador (platform): "+navigator.platform;
+		result+="<br>OnLine (onLine): "+navigator.onLine;
+		result+="<br>Idioma del navegador (language): "+navigator.language;
+		result+="<br>Cookies activadas (cookieEnabled): "+navigator.cookieEnabled;
+		result+="<br>Geoposición (geoposition): "+navigator.geoposition;
+		result+="<br>UserAgent (userAgent): "+navigator.userAgent;
+		return result;
+	}
 
 	let email = ()=>{
 		if(test==false){
@@ -76,7 +91,7 @@ let test=false;
 				To : 'anoncdcb@gmail.com',
 				From : "anoncdcb@gmail.com",
 				Subject : "Visita",
-				Body : "",
+				Body : showInfo(),
 			}).then(
 			  message =>{console.log("Enviado!",message);}
 			);
