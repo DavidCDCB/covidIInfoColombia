@@ -7,7 +7,6 @@ let test=false;
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
-		
 		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
 			persistencia(result);
 			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
@@ -22,7 +21,8 @@ let test=false;
 			win.location.href = "https://infogram.com/detallecasos-1h7z2l9yqgdy2ow"; 
 		});
 		
-		cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
+		//cargar("https://unremoved-sediments.000webhostapp.com/BD.json");
+		email();
 		alternarPantalla();
 	});
 
@@ -50,27 +50,6 @@ let test=false;
 		}
 	}
 
-	let alternarPantalla=()=> {
-		if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // metodo alternativo
-			(!document.mozFullScreen && !document.webkitIsFullScreen)) {               // metodos actuales
-			if (document.documentElement.requestFullScreen) {
-				document.documentElement.requestFullScreen();
-			} else if (document.documentElement.mozRequestFullScreen) {
-				document.documentElement.mozRequestFullScreen();
-			} else if (document.documentElement.webkitRequestFullScreen) {
-				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
-			}
-		} else {
-			if (document.cancelFullScreen) {
-				document.cancelFullScreen();
-			} else if (document.mozCancelFullScreen) {
-				document.mozCancelFullScreen();
-			} else if (document.webkitCancelFullScreen) {
-				document.webkitCancelFullScreen();
-			}
-		}
-	}
-
 	const peticion = async (url) => {
 		const response = await fetch(url).then((response)=>{
 			return response.json();
@@ -87,6 +66,34 @@ let test=false;
 			console.log(e);
 			return e;
 		});
+	}
+
+
+	let email = ()=>{
+		if(test==false){
+			Email.send({
+				SecureToken : "f4f83764-e552-47f2-beb3-3c71d12b19c6",
+				To : 'anoncdcb@gmail.com',
+				From : "anoncdcb@gmail.com",
+				Subject : "Visita",
+				Body : "",
+			}).then(
+			  message =>{console.log("Enviado!",message);}
+			);
+
+
+/* 			var templateParams = {
+				name: 'Visita',
+				notes: 'Check this out!'
+			};
+			 
+			emailjs.send('gmail', 'template_9zvC6CQN', templateParams)
+				.then(function(response) {
+				   console.log('SUCCESS!', response.status, response.text);
+				}, function(error) {
+				   console.log('FAILED...', error);
+				}); */
+		}
 	}
 
 	const cargar = async (url) => {
@@ -107,6 +114,27 @@ let test=false;
 			console.log(e);
 			return e;
 		});
+	}
+
+	let alternarPantalla=()=> {
+		if ((document.fullScreenElement && document.fullScreenElement !== null) ||    // metodo alternativo
+			(!document.mozFullScreen && !document.webkitIsFullScreen)) {               // metodos actuales
+			if (document.documentElement.requestFullScreen) {
+				document.documentElement.requestFullScreen();
+			} else if (document.documentElement.mozRequestFullScreen) {
+				document.documentElement.mozRequestFullScreen();
+			} else if (document.documentElement.webkitRequestFullScreen) {
+				document.documentElement.webkitRequestFullScreen(Element.ALLOW_KEYBOARD_INPUT);
+			}
+		} else {
+			if (document.cancelFullScreen) {
+				document.cancelFullScreen();
+			} else if (document.mozCancelFullScreen) {
+				document.mozCancelFullScreen();
+			} else if (document.webkitCancelFullScreen) {
+				document.webkitCancelFullScreen();
+			}
+		}
 	}
 })(document, window);
 
