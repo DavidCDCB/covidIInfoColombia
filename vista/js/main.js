@@ -2,7 +2,7 @@
 
 import dom from './dom-pruebas.js';//clase estatica
 
-let test=false;
+let test=true;
 
 ((doc, win) => {
 	
