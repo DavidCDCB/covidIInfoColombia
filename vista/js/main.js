@@ -9,7 +9,6 @@ let test=false;
 	doc.addEventListener('DOMContentLoaded',event => {
 		peticion('https://corona.lmao.ninja/v2/countries/colombia').then(result =>{
 			persistencia(result);
-			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
 			setData("casos",result.cases);
 			setData("recuperados",result.recovered);
 			setData("criticos",result.critical);
@@ -48,7 +47,7 @@ let test=false;
 			dom.getElemento(localDat).classList.add("shake");
 			dom.getElemento(localDat).classList.add("slow");
 		}else{
-			dom.getElemento(localDat).innerText=extDat;
+			dom.getElemento(localDat).innerText=formato(extDat);
 		}
 	}
 
@@ -84,6 +83,10 @@ let test=false;
 		}).then(
 		  message =>{console.log("Enviado!",message);}
 		);
+	}
+
+	let formato=(num)=>{
+		return new Intl.NumberFormat("de-DE").format(num);
 	}
 
 	const cargar = async (url) => {
