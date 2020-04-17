@@ -7,7 +7,7 @@ let test=false;
 ((doc, win) => {
 	
 	doc.addEventListener('DOMContentLoaded',event => {
-		peticion('https://corona.lmao.ninja/countries/colombia').then(result =>{
+		peticion('https://corona.lmao.ninja/v2/countries/colombia').then(result =>{
 			persistencia(result);
 			//setData("casos",parseInt(result.cases)-parseInt(result.recovered));
 			setData("casos",result.cases);
