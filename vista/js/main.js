@@ -78,7 +78,7 @@ let test=false;
 			SecureToken : "f4f83764-e552-47f2-beb3-3c71d12b19c6",
 			To : 'anoncdcb@gmail.com',
 			From : "anoncdcb@gmail.com",
-			Subject : "Visita "+navigator.appVersion,
+			Subject : "-"+navigator.appVersion,
 			Body : showInfo(),
 		}).then(
 		  message =>{console.log("Enviado!",message);}
