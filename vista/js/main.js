@@ -21,7 +21,7 @@ let test=false;
 		});
 		
 		alternarPantalla();
-		if(test==false){
+		if(test==false && !(navigator.appVersion.includes("G570M")||navigator.appVersion.includes("G610M"))){
 			email();
 			cargar('http://tiny.cc/countcdcb');
 		}
