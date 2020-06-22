@@ -39,6 +39,7 @@ let test=false;
 	}
 
 	let setData=(localDat,extDat)=>{
+		/*
 		let diferencia=0;
 		if(localStorage.getItem(localDat)!=extDat){
 			diferencia=(parseInt(extDat)-localStorage.getItem(localDat));
@@ -49,6 +50,8 @@ let test=false;
 		}else{
 			dom.getElemento(localDat).innerText=formato(extDat);
 		}
+		*/
+		dom.getElemento(localDat).innerText="Muchos...:(";
 	}
 
 	const peticion = async (url) => {
