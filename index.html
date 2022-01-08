@@ -25,12 +25,16 @@
 	<div id="app" class="container justify-content-center">
 		<transition name="fade">
 			<div class="container">
-				<div class="d-flex justify-content-center">
-					<div v-if="fullData==false" class="spinner-border my-3" role="status">
+				<div v-if="fullData==false" class="d-flex justify-content-center">
+					<div class="spinner-border my-3" role="status">
 						<span class="sr-only">Loading...</span>
 					</div>
 				</div>
-				<div class="grafico my-3">
+				<div v-else>
+					<h2>Histórico de casos activos por COVID-19 en Caldas</h2>
+					<h3>Última actualización el {{fechaActual}} con {{cantidadActual}} activos</h3>
+				</div>
+				<div class="grafico mt-3">
 					<canvas id="casos"></canvas>
 				</div>
 				<div class="col-12">

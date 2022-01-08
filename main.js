@@ -16,6 +16,9 @@ var app = new Vue({
 				}
 			});
 
+			this.fechaActual = fechas[fechas.length-1];
+			this.cantidadActual = datos[datos.length-1];
+
 			const dataset = {
 				labels: fechas,
 				datasets: [{
@@ -35,10 +38,6 @@ var app = new Vue({
 					plugins: {
 						legend: {
 							position: 'bottom',
-						},
-						title: {
-							display: true,
-							text: 'Historico de casos activos por COVID-19 en Caldas'
 						}
 					}
 				},
@@ -53,7 +52,9 @@ var app = new Vue({
 
 	},
 	data: {
-		fullData: false
+		fullData: false,
+		cantidadActual: 0,
+		fechaActual: ""
 	},
 	methods: {
 		downloadData(filename, textInput){
