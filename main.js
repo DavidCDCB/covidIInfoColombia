@@ -25,13 +25,14 @@ var app = new Vue({
 					label: `Activos`,
 					data: datos,
 					borderColor:"red",
+					backgroundColor: "red",
 					borderWidth: 2,
 					pointRadius: 1,
 				}]
 			};
 	
 			const configNew = {
-				type: 'line',
+				type: 'bar',
 				data: dataset,
 				options: {
 					responsive: true,
